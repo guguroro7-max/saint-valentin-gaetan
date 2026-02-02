@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Pour Gaetan 💘</title>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    }
+
+    h1 {
+      color: #b30059;
+      text-align: center;
+      margin-bottom: 40px;
+      z-index: 2;
+    }
+
+    .buttons {
+      position: relative;
+      width: 320px;
+      height: 200px;
+      z-index: 2;
+    }
+
+    button {
+      padding: 14px 28px;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      position: absolute;
+      transition: 0.2s;
+    }
+
+    #yes {
+      left: 40px;
+      top: 110px;
+      background-color: #ff4d88;
+      color: white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    #no {
+      left: 180px;
+      top: 110px;
+      background-color: #ddd;
+    }
+
+    .heart {
+      position: fixed;
+      top: -10px;
+      font-size: 20px;
+      animation: fall linear infinite;
+      color: #ff4d88;
+      opacity: 0.8;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      from { transform: translateY(0); }
+      to { transform: translateY(110vh); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Gaetan 💖<br>Veux-tu être mon St Valentin ?</h1>
+
+  <div class="buttons">
+    <button id="yes" onclick="accepted()">Oui 💘</button>
+    <button id="no">Non 🙄</button>
+  </div>
+
+  <script>
+    const noButton = document.getElementById("no");
+
+    noButton.addEventListener("mouseover", () => {
+      const maxX = 260;
+      const maxY = 160;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      noButton.style.left = x + "px";
+      noButton.style.top = y + "px";
+    });
+
+    function accepted() {
+      document.body.innerHTML = `
+        <h1 style="color:#b30059; text-align:center;">
+          Yaaaay 💕<br>
+          J’ai trop hâte d’être ta St Valentin Gaetan 😍
+        </h1>
+      `;
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (3 + Math.random() * 4) + "s";
+      heart.style.fontSize = (16 + Math.random() * 20) + "px";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 7000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+
+</body>
+</html>
